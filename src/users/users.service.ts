@@ -57,10 +57,12 @@ export class UsersService {
         }
 
         this.users.push(newUser)
+
+        return newUser
     }
 
     updateOne(id: number, user: { name?: string, email?: string, role?: 'INTERN' | 'ENGINEER' | 'ADMIN' }) {
-        this.users = this.users.map(u => u.id === id ? { ...u, user } : { ...u })
+        this.users = this.users.map(u => u.id === id ? { ...u, ...user } : { ...u })
 
         return this.findOne(id)
     }
