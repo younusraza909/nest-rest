@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ValidationPipe, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 import { CreateUserDto } from './dto/create-user.dto';
@@ -20,12 +20,12 @@ export class UsersController {
     }
 
     @Post()            //POST /users
-    createOne(@Body() user: CreateUserDto) {
+    createOne(@Body(ValidationPipe) user: CreateUserDto) {
         return this.usersService.createOne(user)
     }
 
     @Patch(':id')      //PATCH /users/:id
-    updateOne(@Param('id', ParseIntPipe) id: number, @Body() userUpdate: UpdateUserDto) {
+    updateOne(@Param('id', ParseIntPipe) id: number, @Body(ValidationPipe) userUpdate: UpdateUserDto) {
         return this.usersService.updateOne(id, userUpdate)
     }
 
