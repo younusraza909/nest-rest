@@ -18,7 +18,7 @@ export class UsersController {
     }
 
     @Patch(':id')      //PATCH /users/:id
-    editOne(@Param('id') id: string, @Body() userUpdate: {}) {
+    updateOne(@Param('id') id: string, @Body() userUpdate: {}) {
         return {}
     }
 
